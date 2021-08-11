@@ -502,6 +502,8 @@ void setup() {
 #if DEBUG
   Serial.println(F("Start."));
 #endif
+  // LED状態取得
+  Serial.write(0xff);
 }
 
 //
