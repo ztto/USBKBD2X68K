@@ -96,12 +96,9 @@ class MseRptParser : public MouseReportParser {
 void sendKeyMake(uint8_t key) {
   // HID Usage ID から X68 スキャンコード に変換
   uint8_t code = 0;
-  if (key >= 0x04 && key <= 0x67) {
-    code = pgm_read_byte(keytable1 + (key - 0x04));
-  } else if (key >= 0x87 && key <= 0x94) {
-    code = pgm_read_byte(keytable2 + (key - 0x87));
-  } else if (key >= 0xE0 && key <= 0xE7) {
-    code = pgm_read_byte(keytable3 + (key - 0xE0));
+  code = pgm_read_byte(&(keytable[key]));
+  if (code == 0x00) {
+    return;
   }
   sCodeCnt++;
   prevScode = code;
@@ -123,12 +120,9 @@ void sendKeyMake(uint8_t key) {
 void sendKeyBreak(uint8_t key) {
   // HID Usage ID から X68000 スキャンコード に変換
   uint8_t code = 0;
-  if (key >= 0x04 && key <= 0x67) {
-    code = pgm_read_byte(keytable1 + (key - 0x04));
-  } else if (key >= 0x87 && key <= 0x94) {
-    code = pgm_read_byte(keytable2 + (key - 0x87));
-  } else if (key >= 0xE0 && key <= 0xE7) {
-    code = pgm_read_byte(keytable3 + (key - 0xE0));
+  code = pgm_read_byte(&(keytable[key]));
+  if (code == 0x00) {
+    return;
   }
   sCodeCnt--;
   if (prevScode == code) {
@@ -192,8 +186,10 @@ void KbdRptParser::OnControlKeysChanged(uint8_t before, uint8_t after) {
   if (beforeMod.bmLeftGUI != afterMod.bmLeftGUI) {
     if (afterMod.bmLeftGUI) {
       // 左GUIキーを押した
+      sendKeyMake(0xe3);
     } else {
       // 左GUIキーを離した
+      sendKeyBreak(0xe3);
     }
   }
   // 右Ctrlキー
@@ -219,10 +215,10 @@ void KbdRptParser::OnControlKeysChanged(uint8_t before, uint8_t after) {
   // 右Altキー
   if (beforeMod.bmRightAlt != afterMod.bmRightAlt) {
     if (afterMod.bmRightAlt) {
-      // 右Altキーを押した ==> XF1
+      // 右Altキーを押した
       sendKeyMake(0xe6);
     } else {
-      // 右Altキーを離した ==> XF1
+      // 右Altキーを離した
       sendKeyBreak(0xe6);
     }
   }
@@ -230,8 +226,10 @@ void KbdRptParser::OnControlKeysChanged(uint8_t before, uint8_t after) {
   if (beforeMod.bmRightGUI != afterMod.bmRightGUI) {
     if (afterMod.bmRightGUI) {
       // 右GUIキーを押した
+      sendKeyMake(0xe7);
     } else {
       // 右GUIキーを離した
+      sendKeyBreak(0xe7);
     }
   }
 }
