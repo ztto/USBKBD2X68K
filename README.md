@@ -8,15 +8,15 @@ USBKBD2X68K とは USBキーボードをX68000で使えるようにしたもの�
 また、ゲーミングキーボード等電力を多く使用するものも使用できません
 
 ## 完成品
-![](images/usbkbs2x68k1.jpg)
-![](images/usbkbs2x68k2.jpg)
+![](image/usbkbs2x68k1.jpg)
+![](image/usbkbs2x68k2.jpg)
 
 ## ガーバーデータ
-![](images/usbkbs2x68k3.jpg)
-![](images/usbkbs2x68k4.jpg)
+![](image/usbkbs2x68k3.jpg)
+![](image/usbkbs2x68k4.jpg)
 
 ## 配線図
-![](images/USBKBD2X68K.png)
+![](image/USBKBD2X68K.png)
 
 ## キーアサイン
 109キーボードではすべてのキーをアサインすることができません。
