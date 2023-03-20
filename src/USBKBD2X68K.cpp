@@ -66,6 +66,7 @@ int16_t dyData = 0;                     // マウスデータ(Y)
 
 SoftwareSerial msSerial(MS_RX, MS_TX);  // RX, TX
 
+void sendRepeat();
 //
 // HIDキーボード レポートパーサークラスの定義
 //
