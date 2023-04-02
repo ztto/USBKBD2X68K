@@ -50,7 +50,7 @@ https://akizukidenshi.com/catalog/g/gI-13887/
 レギュレーターで3.3Vで駆動します
 方法は以下
 VBUS パターンカット（赤丸部分）
-![](image/cut.png.png)
+![](image/cut.png)
 
 2.ミニusbホストシールド2.0とarduino pro mini 3.3vの結合
 って言っても重ねて半田します
